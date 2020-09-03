@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-header"> User List</div>
+
+    <div class="card-body">
+        <div class="row float-right mb-2">
+            <div class="col-md-12">
+                <input type="text" #userSearchInput class="form-control" placeholder="Search by user" />
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped  mb-0"  *ngIf="userslist && userslist.length >0">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">User Type</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let el of userslist">
+                        <th>{{el.id}} </th>
+                        <td> <img class="user-img" src={{el.avatar_url}} /></td>
+                        <td><a [routerLink]="['/users', el.login]"> {{el.login}}</a></td>
+                        <td> {{el.type}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-danger">
+    Error: {{ errorMessage }}
+</div>
